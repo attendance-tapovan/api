@@ -22,7 +22,11 @@ app.post('/api/findattendance',withPrisma, async (c) => {
   
   
   const { studentId, month, year } = body;
-  if (!studentId || !month || !year) {
+ if (
+  !studentId ||
+  typeof month !== 'number' ||
+  typeof year !== 'number'
+) {
     return c.json({ error: 'Missing required fields' }, 400);
   }
 
